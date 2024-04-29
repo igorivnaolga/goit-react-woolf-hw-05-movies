@@ -1,3 +1,6 @@
+import Home from 'pages/HomePage/HomePage';
+import Movies from 'pages/MoviesPage/MoviesPage';
+
 const { NavLink } = require('react-router-dom');
 
 const Header = () => {
