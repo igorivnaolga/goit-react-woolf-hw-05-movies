@@ -1,6 +1,7 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 import { getDetailsMovies } from 'components/services/api.js';
+import { TiArrowBack } from 'react-icons/ti';
 
 import {
   DetailsContainer,
@@ -8,6 +9,7 @@ import {
   Overview,
   AdditionalInfo,
   MovieInfo,
+  StyledBackLink,
 } from './MovieDetailsPage.styled.js';
 import {
   ErrorMessage,
@@ -15,6 +17,9 @@ import {
 } from 'pages/HomePage/HomePage.styled.js';
 
 const MovieDetailsPage = () => {
+  const location = useLocation();
+  const backLinkRef = useRef(location);
+
   const params = useParams();
 
   const [movie, setMovie] = useState(null);
@@ -45,6 +50,11 @@ const MovieDetailsPage = () => {
       )}
       {isLoading && <LoadingMessage>Loading...</LoadingMessage>}
 
+      <StyledBackLink to={backLinkRef.current.state?.from ?? '/'}>
+        <TiArrowBack style={{ verticalAlign: 'bottom' }} />
+        Go back
+      </StyledBackLink>
+
       {movie && (
         <DetailsContainer>
           <MovieImage
@@ -57,12 +67,21 @@ const MovieDetailsPage = () => {
             <h2>Overview</h2>
             <Overview>{movie.overview}</Overview>
             <h2>Genres</h2>
+            {movie.genres.map(
+              (
+                { name },
+                index //перебираємо масив мар жанрів, витягуємо назву жанрів та індекс поточного елемента
+              ) => (
+                <span key={index}>{name} </span> //відмальовуємо унікальний ключ "індекс" і рендерим нейм жанру
+              )
+            )}
           </MovieInfo>
         </DetailsContainer>
       )}
       <AdditionalInfo>
         <h3>Additional information</h3>
       </AdditionalInfo>
+      <Outlet />
     </>
   );
 };
