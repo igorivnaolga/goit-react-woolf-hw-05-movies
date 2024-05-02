@@ -7,16 +7,21 @@ import {
   MovieTitle,
 } from './MoviesList.styled';
 
+import movieplaceholder from 'services/movieplaceholder.png';
+
 const MoviesList = ({ films }) => {
   const location = useLocation();
-  console.log(films);
   return (
     <MoviesListContainer>
       {films.map(film => (
         <MovieItem key={film.id}>
           <MovieLink to={`/movies/${film.id}`} state={{ from: location }}>
             <MovieImage
-              src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+              src={
+                film.poster_path
+                  ? `https://image.tmdb.org/t/p/w500${film.poster_path}`
+                  : movieplaceholder
+              }
               alt={film.title}
             />
             <MovieTitle>{film.title}</MovieTitle>

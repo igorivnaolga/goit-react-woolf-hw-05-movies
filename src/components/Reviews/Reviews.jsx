@@ -22,7 +22,6 @@ const Reviews = () => {
         setIsLoading(true);
         const fetchReviews = await getReviewsMovies(params.movieId);
         setReviews(fetchReviews.results);
-        console.log(fetchReviews.results);
       } catch (error) {
         setError(error);
       } finally {

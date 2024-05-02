@@ -13,11 +13,14 @@ import {
   AddList,
   StyledNavLink,
 } from './MovieDetailsPage.styled.js';
+
 import {
   ErrorMessage,
   LoadingMessage,
 } from 'pages/HomePage/HomePage.styled.js';
+
 import movieplaceholder from 'services/movieplaceholder.png';
+
 const MovieDetailsPage = () => {
   const location = useLocation();
   const backLinkRef = useRef(location);
