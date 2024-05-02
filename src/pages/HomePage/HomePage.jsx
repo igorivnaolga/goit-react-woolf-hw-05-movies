@@ -1,4 +1,4 @@
-import { getTrendingMovies } from 'components/services/api';
+import { getTrendingMovies } from 'services/api';
 import { useEffect, useState } from 'react';
 import { ErrorMessage, LoadingMessage, TrendingTitle } from './HomePage.styled';
 import MoviesList from 'components/MoviesList/MoviesList';

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const DetailsContainer = styled.div`
@@ -34,10 +34,21 @@ export const AdditionalInfo = styled.div`
 export const AddList = styled.li`
   padding: 10px;
 `;
+export const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  font-weight: bold;
+  color: #551a8b;
+  &.active {
+    text-decoration: underline;
+    scale: 1.05;
+    font-weight: bold;
+  }
+`;
 export const StyledBackLink = styled(Link)`
   text-decoration: none;
   font-weight: bold;
   font-size: 18px;
   margin: 15px;
   display: block;
+  color: #551a8b;
 `;

@@ -1,6 +1,6 @@
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-import { getDetailsMovies } from 'components/services/api.js';
+import { getDetailsMovies } from 'services/api.js';
 import { TiArrowBack } from 'react-icons/ti';
 
 import {
@@ -10,12 +10,14 @@ import {
   AdditionalInfo,
   MovieInfo,
   StyledBackLink,
+  AddList,
+  StyledNavLink,
 } from './MovieDetailsPage.styled.js';
 import {
   ErrorMessage,
   LoadingMessage,
 } from 'pages/HomePage/HomePage.styled.js';
-
+import movieplaceholder from 'services/movieplaceholder.png';
 const MovieDetailsPage = () => {
   const location = useLocation();
   const backLinkRef = useRef(location);
@@ -41,6 +43,9 @@ const MovieDetailsPage = () => {
     getDetails();
   }, [params.movieId]);
 
+  const getUserScore =
+    movie && movie.vote_average ? Math.round(movie.vote_average * 10) : 0;
+
   return (
     <>
       {error && (
@@ -58,12 +63,16 @@ const MovieDetailsPage = () => {
       {movie && (
         <DetailsContainer>
           <MovieImage
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            src={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                : movieplaceholder
+            }
             alt={movie.title}
           />
           <MovieInfo>
             <h1>{movie.title}</h1>
-            <p>User score: {movie.vote_average}%</p>
+            <p>User score: {getUserScore}%</p>
             <h2>Overview</h2>
             <Overview>{movie.overview}</Overview>
             <h2>Genres</h2>
@@ -80,6 +89,14 @@ const MovieDetailsPage = () => {
       )}
       <AdditionalInfo>
         <h3>Additional information</h3>
+        <ul>
+          <AddList>
+            <StyledNavLink to="cast">Cast</StyledNavLink>
+          </AddList>
+          <AddList>
+            <StyledNavLink to="reviews">Reviews</StyledNavLink>
+          </AddList>
+        </ul>
       </AdditionalInfo>
       <Outlet />
     </>

@@ -1,5 +1,5 @@
 import Searchbar from 'components/Searchbar/Searchbar';
-import { searchMovies } from 'components/services/api';
+import { searchMovies } from 'services/api';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { StyleErrorMsg, StyledNotFound } from './MoviesPage.styled';

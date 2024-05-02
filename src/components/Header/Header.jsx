@@ -1,15 +1,15 @@
-const { NavLink } = require('react-router-dom');
+import { StyledList, StyledNavLink } from './Header.styled';
 
 const Header = () => {
   return (
-    <nav>
+    <StyledList>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <StyledNavLink to="/">Home</StyledNavLink>
       </li>
       <li>
-        <NavLink to="/movies">Movies</NavLink>
+        <StyledNavLink to="/movies">Movies</StyledNavLink>
       </li>
-    </nav>
+    </StyledList>
   );
 };
 
