@@ -8,7 +8,7 @@ import {
 } from './MoviesList.styled';
 
 const MoviesList = ({ films }) => {
-  const location = useLocation;
+  const location = useLocation();
   console.log(films);
   return (
     <MoviesListContainer>
