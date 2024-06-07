@@ -5,7 +5,7 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter basename="/goit-react-woolf-hw-05-movies">
+  <BrowserRouter basename="/movies">
     <React.StrictMode>
       <App />
     </React.StrictMode>
